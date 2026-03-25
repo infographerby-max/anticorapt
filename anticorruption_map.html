@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КЭА — Незалежны антыкарупцыйны орган Беларусі</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0a14;
+  --paper: #f5f3ee;
+  --gold: #c8a96e;
+  --gold-light: #e8d5a3;
+  --crimson: #9b1c2e;
+  --teal: #1a6e6e;
+  --teal-light: #2a9494;
+  --violet: #4a2060;
+  --violet-mid: #7a3d9a;
+  --ash: #d8d4cc;
+  --smoke: #8a8680;
+  --white: #fefefe;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--ink);
+  color: var(--paper);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(26,110,110,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(155,28,46,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(200,169,110,0.08) 0%, transparent 50%);
+}
+
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image: 
+    linear-gradient(rgba(200,169,110,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(200,169,110,0.4);
+  padding: 8px 18px;
+  margin-bottom: 40px;
+  width: fit-content;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.badge::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero-kea {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(72px, 10vw, 130px);
+  line-height: 0.9;
+  color: var(--paper);
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.hero-kea span {
+  color: var(--gold);
+  display: block;
+}
+
+.hero-subtitle {
+  margin-top: 30px;
+  font-size: 14px;
+  color: var(--smoke);
+  line-height: 1.7;
+  max-width: 380px;
+  font-weight: 400;
+}
+
+.hero-subtitle strong {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  z-index: 2;
+}
+
+.scroll-hint::after {
+  content: '';
+  width: 60px; height: 1px;
+  background: var(--gold);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { transform: scaleX(0); transform-origin: left; }
+  50% { transform: scaleX(1); transform-origin: left; }
+  50.01% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+/* Big decorative circle */
+.hero-visual {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.orbit-system {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200,169,110,0.2);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-ring:nth-child(1) { width: 500px; height: 500px; animation: rotateSlow 40s linear infinite; }
+.orbit-ring:nth-child(2) { width: 360px; height: 360px; animation: rotateSlow 28s linear infinite reverse; border-color: rgba(26,110,110,0.3); }
+.orbit-ring:nth-child(3) { width: 220px; height: 220px; animation: rotateSlow 18s linear infinite; border-color: rgba(155,28,46,0.3); }
+
+@keyframes rotateSlow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+.orbit-dot {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  top: 0; left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.orbit-ring:nth-child(2) .orbit-dot { background: var(--teal-light); }
+.orbit-ring:nth-child(3) .orbit-dot { background: var(--crimson); }
+
+.orbit-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--violet) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--gold);
+  box-shadow: 0 0 60px rgba(26,110,110,0.4);
+}
+
+/* ── SECTION GENERAL ── */
+.section {
+  padding: 100px 60px;
+  position: relative;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 60px;
+}
+
+/* ── WHY — diagonal layout ── */
+.why-section {
+  background: #0e0e1a;
+  overflow: hidden;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 60px;
+  position: relative;
+}
+
+.why-grid::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.why-card {
+  padding: 50px 50px;
+  border-top: 1px solid rgba(200,169,110,0.1);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.why-card:nth-child(odd) { border-right: 1px solid rgba(200,169,110,0.1); }
+.why-card:hover { background: rgba(200,169,110,0.03); }
+
+.why-number {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 1;
+  color: rgba(200,169,110,0.08);
+  margin-bottom: -20px;
+  display: block;
+}
+
+.why-heading {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--paper);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.why-stat {
+  font-size: 36px;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  color: var(--crimson);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.why-text {
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.7;
+}
+
+/* ── MODEL — three pillars ── */
+.model-section {
+  background: var(--ink);
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.pillar {
+  background: #111120;
+  padding: 50px 36px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.pillar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  transition: height 0.4s ease;
+}
+
+.pillar-1::before { background: var(--teal); }
+.pillar-2::before { background: var(--gold); }
+.pillar-3::before { background: var(--crimson); }
+
+.pillar:hover { transform: translateY(-6px); }
+.pillar:hover::before { height: 100%; opacity: 0.05; }
+
+.pillar-icon {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 28px;
+}
+
+.pillar-1 .pillar-icon { background: rgba(26,110,110,0.2); }
+.pillar-2 .pillar-icon { background: rgba(200,169,110,0.15); }
+.pillar-3 .pillar-icon { background: rgba(155,28,46,0.2); }
+
+.pillar-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--smoke);
+  margin-bottom: 12px;
+}
+
+.pillar h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--paper);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.pillar p {
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.7;
+}
+
+.pillar-expand {
+  margin-top: 24px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.pillar:hover .pillar-expand { max-height: 300px; }
+
+.pillar-list {
+  list-style: none;
+  margin-top: 16px;
+}
+
+.pillar-list li {
+  font-size: 12px;
+  color: var(--smoke);
+  padding: 6px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.pillar-list li::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+/* ── PRINCIPLES — accordion-style unusual ── */
+.principles-section {
+  background: #090910;
+  position: relative;
+}
+
+.principles-section::before {
+  content: 'ПРИНЦИПЫ';
+  position: absolute;
+  top: 60px; right: -20px;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 120px;
+  color: rgba(200,169,110,0.03);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+}
+
+.principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.principle-item {
+  border-bottom: 1px solid rgba(200,169,110,0.1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.principle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  gap: 20px;
+}
+
+.principle-num {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--gold);
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.principle-name {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--paper);
+  flex: 1;
+  transition: color 0.3s;
+}
+
+.principle-item.open .principle-name { color: var(--gold-light); }
+
+.principle-arrow {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(200,169,110,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.principle-item.open .principle-arrow {
+  transform: rotate(45deg);
+  background: rgba(200,169,110,0.15);
+}
+
+.principle-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+.principle-body-inner {
+  padding: 0 0 32px 60px;
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.8;
+  max-width: 700px;
+}
+
+.principle-item.open .principle-body { max-height: 300px; }
+
+/* ── WORLD CASES — horizontal scroll ── */
+.cases-section {
+  background: #0a0a14;
+  padding-bottom: 0;
+}
+
+.cases-track-wrapper {
+  overflow-x: auto;
+  margin: 0 -60px;
+  padding: 0 60px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.cases-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding-bottom: 60px;
+  margin-top: 60px;
+}
+
+.case-card {
+  width: 280px;
+  background: #111120;
+  flex-shrink: 0;
+  padding: 36px 28px;
+  border: 1px solid rgba(200,169,110,0.08);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.case-card:hover {
+  border-color: rgba(200,169,110,0.3);
+  transform: translateY(-4px);
+}
+
+.case-flag {
+  font-size: 36px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.case-country {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+
+.case-organ {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.case-score {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.score-label {
+  font-size: 10px;
+  color: var(--smoke);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.case-lesson {
+  font-size: 12px;
+  color: var(--smoke);
+  line-height: 1.6;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 16px;
+}
+
+/* ── STRUCTURE — org chart ── */
+.structure-section {
+  background: var(--ink);
+  overflow: hidden;
+  position: relative;
+}
+
+.org-tree {
+  margin-top: 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.org-node {
+  background: #111120;
+  border: 1px solid rgba(200,169,110,0.2);
+  padding: 20px 36px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.org-node:hover {
+  border-color: var(--gold);
+  background: rgba(200,169,110,0.05);
+}
+
+.org-node-top {
+  min-width: 340px;
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(26,110,110,0.15), rgba(74,32,96,0.15));
+}
+
+.org-node-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--paper);
+}
+
+.org-node-sub {
+  font-size: 11px;
+  color: var(--smoke);
+  margin-top: 4px;
+}
+
+.org-connector {
+  width: 1px;
+  height: 40px;
+  background: rgba(200,169,110,0.3);
+}
+
+.org-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.org-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.org-branch::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 40px;
+  background: rgba(200,169,110,0.3);
+}
+
+.org-branch-card {
+  padding: 20px 28px;
+  width: 240px;
+  position: relative;
+  top: 40px;
+}
+
+.org-branch-card .org-node-title { font-size: 13px; }
+
+.org-color-teal { border-color: rgba(26,110,110,0.4); }
+.org-color-gold { border-color: rgba(200,169,110,0.4); }
+.org-color-crimson { border-color: rgba(155,28,46,0.4); }
+.org-color-violet { border-color: rgba(122,61,154,0.4); }
+
+/* ── GUARANTEES ── */
+.guarantees-section {
+  background: #0e0e1a;
+}
+
+.guarantees-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.guarantee-card {
+  padding: 48px;
+  background: #111120;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background 0.3s;
+}
+
+.guarantee-card:hover { background: #151528; }
+
+.guarantee-card.highlight {
+  background: linear-gradient(135deg, rgba(26,110,110,0.15) 0%, rgba(74,32,96,0.1) 100%);
+  grid-column: span 2;
+}
+
+.g-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.g-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--paper);
+  margin-bottom: 14px;
+}
+
+.g-text {
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.7;
+}
+
+.g-accent {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* ── ROADMAP ── */
+.roadmap-section {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline {
+  margin-top: 60px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), rgba(200,169,110,0.1));
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 30px;
+  padding-bottom: 50px;
+  align-items: start;
+}
+
+.tl-dot {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  margin-left: 1px;
+}
+
+.tl-dot-1 { background: var(--teal); color: var(--paper); }
+.tl-dot-2 { background: var(--gold); color: var(--ink); }
+.tl-dot-3 { background: var(--violet-mid); color: var(--paper); }
+.tl-dot-4 { background: var(--crimson); color: var(--paper); }
+
+.tl-content {
+  background: #111120;
+  border: 1px solid rgba(200,169,110,0.1);
+  padding: 32px 36px;
+  transition: border-color 0.3s;
+}
+
+.tl-content:hover { border-color: rgba(200,169,110,0.3); }
+
+.tl-tag {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.tl-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--paper);
+  margin-bottom: 14px;
+}
+
+.tl-text {
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.7;
+}
+
+.tl-bullets {
+  list-style: none;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tl-bullets li {
+  font-size: 12px;
+  color: rgba(138,134,128,0.9);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tl-bullets li::before {
+  content: '·';
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── CTA / FOOTER ── */
+.cta-section {
+  background: #090910;
+  padding: 120px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(26,110,110,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.cta-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 80px);
+  line-height: 1.0;
+  color: var(--paper);
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+
+.cta-sub {
+  font-size: 15px;
+  color: var(--smoke);
+  max-width: 500px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--teal);
+  color: var(--paper);
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 18px 40px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.cta-btn:hover {
+  background: var(--teal-light);
+  transform: translateY(-2px);
+}
+
+.footer-bar {
+  background: #050508;
+  padding: 32px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(200,169,110,0.08);
+}
+
+.footer-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.footer-link {
+  font-size: 12px;
+  color: var(--smoke);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.footer-link:hover { color: var(--gold); }
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: rgba(10,10,20,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200,169,110,0.08);
+}
+
+.nav-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--paper); }
+
+/* ── ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SCROLL BEHAVIOR ── */
+html { scroll-behavior: smooth; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .pillars, .guarantees-grid, .why-grid { grid-template-columns: 1fr; }
+  .guarantee-card.highlight { grid-column: span 1; }
+  .nav-links { display: none; }
+  .section { padding: 60px 28px; }
+  .hero-content { padding: 100px 28px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">КЭА</div>
+  <ul class="nav-links">
+    <li><a href="#why">Контекст</a></li>
+    <li><a href="#model">Модель</a></li>
+    <li><a href="#principles">Принципы</a></li>
+    <li><a href="#world">Мировой опыт</a></li>
+    <li><a href="#structure">Структура</a></li>
+    <li><a href="#roadmap">Нормативы</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  
+  <div class="hero-content">
+    <div class="badge">Прастора · 2025 · Концепция</div>
+    <h1 class="hero-kea">
+      КЭА
+      <span>Беларусь</span>
+    </h1>
+    <p class="hero-subtitle">
+      <strong>Комітэт па этыцы дзяржаўнай службы і процідзеянні карупцыі</strong> — 
+      незалежны шматмэтавы орган, які аб'ядноўвае следства, прафілактыку і асвету ў адзіны цыкл.
+    </p>
+  </div>
+
+  <div class="hero-visual">
+    <div class="orbit-system">
+      <div class="orbit-ring"><div class="orbit-dot"></div></div>
+      <div class="orbit-ring"><div class="orbit-dot"></div></div>
+      <div class="orbit-ring"><div class="orbit-dot"></div></div>
+      <div class="orbit-center">КЭА</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Прокрутить вниз</div>
+</section>
+
+<!-- WHY -->
+<section class="why-section section" id="why">
+  <div class="section-label">01 · Почему это необходимо</div>
+  <h2 class="section-title reveal">Беларусь нуждается<br>в новом институте</h2>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <span class="why-number">01</span>
+      <h3 class="why-heading">Индекс верховенства права</h3>
+      <span class="why-stat">105/142</span>
+      <p class="why-text">Беларусь занимает 105-е место из 142 стран в Индексе верховенства права WJP 2024 года. Показатели продолжают ухудшаться.</p>
+    </div>
+    
+    <div class="why-card reveal">
+      <span class="why-number">02</span>
+      <h3 class="why-heading">Восприятие коррупции</h3>
+      <span class="why-stat" style="color: var(--gold)">114/180</span>
+      <p class="why-text">114-е место в Индексе восприятия коррупции Transparency International. Граждане и внешние наблюдатели видят госаппарат коррумпированным.</p>
+    </div>
+    
+    <div class="why-card reveal">
+      <span class="why-number">03</span>
+      <h3 class="why-heading">Два уровня коррупции</h3>
+      <span class="why-stat" style="color: var(--teal-light)">~50%</span>
+      <p class="why-text">Около половины ВВП создаётся госсектором — высокие риски злоупотреблений при закупках, распределении ресурсов и управлении госсобственностью.</p>
+    </div>
+    
+    <div class="why-card reveal">
+      <span class="why-number">04</span>
+      <h3 class="why-heading">Структурный дефицит</h3>
+      <span class="why-stat" style="color: var(--crimson)">7/100</span>
+      <p class="why-text">Freedom in the World 2025: Беларусь получила лишь 7 баллов из 100. Следствие, прокуратура и суды зависят от единого политического центра.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL -->
+<section class="model-section section" id="model">
+  <div class="section-label">02 · Выбранная модель</div>
+  <h2 class="section-title reveal">Три направления —<br>один центр</h2>
+
+  <div class="pillars">
+    <div class="pillar pillar-1 reveal">
+      <div class="pillar-icon">🔍</div>
+      <div class="pillar-num">01 · СЛЕДСТВИЕ</div>
+      <h3>Расследование серьёзной коррупции</h3>
+      <p>Узкий фокус на самые тяжёлые и системные дела — коррупция высших должностных лиц и крупные схемы. Работа под контролем суда и надзором прокуратуры.</p>
+      <div class="pillar-expand">
+        <ul class="pillar-list">
+          <li>Досудебные расследования коррупционных преступлений</li>
+          <li>Финансовые расследования и поиск активов</li>
+          <li>Арест и конфискация незаконно нажитого имущества</li>
+          <li>Международное сотрудничество и возврат активов</li>
+          <li>Взаимодействие с прокуратурой и судами</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar pillar-2 reveal">
+      <div class="pillar-icon">🛡️</div>
+      <div class="pillar-num">02 · ПРОФИЛАКТИКА</div>
+      <h3>Предупреждение и управление рисками</h3>
+      <p>Анализ коррупционных рисков, антикоррупционная экспертиза законопроектов, декларирование, контроль конфликта интересов и финансирования партий.</p>
+      <div class="pillar-expand">
+        <ul class="pillar-list">
+          <li>Системный анализ коррупционных рисков в госорганах</li>
+          <li>Антикоррупционная экспертиза нормативных актов</li>
+          <li>Ведение единого реестра деклараций</li>
+          <li>Контроль финансирования политических партий</li>
+          <li>Регулирование лоббистской деятельности</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar pillar-3 reveal">
+      <div class="pillar-icon">💡</div>
+      <div class="pillar-num">03 · ПРОСВЕЩЕНИЕ</div>
+      <h3>Этика и работа с обществом</h3>
+      <p>Формирование нетерпимости к коррупции, обучение чиновников, информационные кампании, диалог с бизнесом и НКО, внедрение кодексов поведения.</p>
+      <div class="pillar-expand">
+        <ul class="pillar-list">
+          <li>Разработка и мониторинг кодексов служебного поведения</li>
+          <li>Обучение госслужащих и муниципальных работников</li>
+          <li>Информационные кампании для граждан</li>
+          <li>Взаимодействие с НКО и бизнес-ассоциациями</li>
+          <li>Координация с учреждениями образования</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles-section section" id="principles">
+  <div class="section-label">03 · Базовые принципы</div>
+  <h2 class="section-title reveal">Как работает<br>независимость</h2>
+
+  <div class="principles-list">
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">01</span>
+        <span class="principle-name">Законность и права человека</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Комитет действует только на основании закона, соблюдает процессуальные гарантии и уважает права и свободы человека. Любое вмешательство должно быть необходимым, соразмерным и подлежать судебному контролю. Обыски, прослушка и другие ограничения прав санкционирует суд.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">02</span>
+        <span class="principle-name">Независимость и подотчётность</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Орган институционально отделён от правительства — его руководство и бюджет защищены специальными гарантиями. Одновременно Комитет подотчётен парламенту: ежегодные публичные отчёты, внешняя оценка эффективности, Наблюдательный совет из представителей гражданского общества.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">03</span>
+        <span class="principle-name">Политическая нейтральность</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Комитет не вмешивается в политическую конкуренцию и не оценивает программы партий. Отбор дел строится исключительно на признаках коррупции, размере ущерба и системности схем — не на политических взглядах участников.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">04</span>
+        <span class="principle-name">Приоритет предупреждения</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Комитет не ограничивается расследованиями — он в первую очередь устраняет причины нарушений: слабые правила, непрозрачные процедуры, конфликты интересов. При этом ответственность за уже совершённые коррупционные правонарушения должна быть неотвратимой.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">05</span>
+        <span class="principle-name">Защита информаторов</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Лица, добросовестно сообщающие о коррупции, получают гарантию конфиденциальности и защиту от преследования. Создаются безопасные каналы сообщений, включая анонимные. Заявитель не несёт юридической ответственности, кроме случаев заведомо ложного сообщения.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">06</span>
+        <span class="principle-name">Нулевая терпимость внутри органа</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Управление внутреннего контроля следит за добропорядочностью сотрудников, проводит служебные проверки, проверяет декларации работников. Орган, требующий честности от других, сам не должен терять доверия.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-item" onclick="togglePrinciple(this)">
+      <div class="principle-header">
+        <span class="principle-num">07</span>
+        <span class="principle-name">Открытость и прозрачность</span>
+        <div class="principle-arrow">+</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-body-inner">
+          Ежегодные отчёты с измеримыми показателями: сроки рассмотрения сообщений, доля дел, доведённых до суда, объём возвращённых активов, выполнение рекомендаций. Публикуемые методики расчёта открыты для всех.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLD CASES -->
+<section class="cases-section section" id="world">
+  <div class="section-label">04 · Мировой опыт</div>
+  <h2 class="section-title reveal">Уроки семи стран</h2>
+
+  <div class="cases-track-wrapper">
+    <div class="cases-track">
+
+      <div class="case-card">
+        <span class="case-flag">🇭🇰</span>
+        <div class="case-country">Гонконг</div>
+        <div class="case-organ">ICAC · с 1974</div>
+        <div class="case-score" style="color: var(--teal)">17</div>
+        <div class="score-label">место в CPI 2024</div>
+        <div class="case-lesson">Классическая триада: следствие + профилактика + просвещение. Единый центр видит всю картину целиком. Четыре консультативных комитета обеспечивают надзор со стороны общества.</div>
+      </div>
+
+      <div class="case-card">
+        <span class="case-flag">🇦🇺</span>
+        <div class="case-country">Австралия</div>
+        <div class="case-organ">NACC · с 2023</div>
+        <div class="case-score" style="color: var(--teal)">10</div>
+        <div class="score-label">место в CPI 2024</div>
+        <div class="case-lesson">Порог: только серьёзная и системная коррупция. Два внешних уровня контроля — парламентский комитет и независимый Инспектор. Гражданско-правовой стандарт доказывания.</div>
+      </div>
+
+      <div class="case-card">
+        <span class="case-flag">🇪🇪</span>
+        <div class="case-country">Эстония</div>
+        <div class="case-organ">e-state model</div>
+        <div class="case-score" style="color: var(--gold)">13</div>
+        <div class="score-label">место в CPI 2024</div>
+        <div class="case-lesson">Цифровые реестры связывают все данные. Каждый шаг оставляет цифровой след. Журналисты и НКО могут сопоставлять контракты с бенефициарами без запроса.</div>
+      </div>
+
+      <div class="case-card">
+        <span class="case-flag">🇱🇻</span>
+        <div class="case-country">Латвия</div>
+        <div class="case-organ">KNAB</div>
+        <div class="case-score" style="color: var(--gold)">38</div>
+        <div class="score-label">место в CPI 2024</div>
+        <div class="case-lesson">Тройная функция: расследование + профилактика + контроль финансирования партий. Электронная система деклараций положительно отмечена ЕС в 2024.</div>
+      </div>
+
+      <div class="case-card">
+        <span class="case-flag">🇱🇹</span>
+        <div class="case-country">Литва</div>
+        <div class="case-organ">STT</div>
+        <div class="case-score" style="color: var(--gold)">32</div>
+        <div class="score-label">место в CPI 2024</div>
+        <div class="case-lesson">Следствие + профилактика + просвещение. Рекомендации с конкретными сроками исполнения. Громкие дела против высших должностных лиц показали реальные последствия.</div>
+      </div>
+
+      <div class="case-card">
+        <span class="case-flag">🇸🇮</span>
+        <div class="case-country">Словения</div>
+        <div class="case-organ">KPK</div>
+        <div class="case-score" style="color: var(--smoke)">36</div>
+        <div class="score-label">место в CPI 2024</div>
+        <div class="case-lesson">Чёткое разграничение: KPK отвечает за профилактику, а полиция и спецпрокуратура — за расследование. Реестр лоббистов и контроль конфликта интересов.</div>
+      </div>
+
+      <div class="case-card">
+        <span class="case-flag">🇺🇦</span>
+        <div class="case-country">Украина</div>
+        <div class="case-organ">НАБУ · НАЗК · ВАКС</div>
+        <div class="case-score" style="color: var(--crimson)">+37</div>
+        <div class="score-label">позиций с 2014</div>
+        <div class="case-lesson">Специализация повышает качество, но фрагментация создаёт координационные издержки. Урок для Беларуси: единый орган эффективнее в переходный период.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="structure-section section" id="structure">
+  <div class="section-label">05 · Структура органа</div>
+  <h2 class="section-title reveal">Кто и как<br>принимает решения</h2>
+
+  <div class="org-tree reveal">
+    <!-- ПАРЛАМЕНТ/КОНТРОЛЬ -->
+    <div style="display: flex; gap: 40px; justify-content: center; margin-bottom: 0;">
+      <div class="org-node" style="min-width:200px; border-color: rgba(138,134,128,0.4);">
+        <div class="org-node-title">Сойм (Парламент)</div>
+        <div class="org-node-sub">Избирает Председателя · Ежегодные отчёты</div>
+      </div>
+      <div class="org-node" style="min-width:200px; border-color: rgba(138,134,128,0.4);">
+        <div class="org-node-title">Наблюдательный совет</div>
+        <div class="org-node-sub">9 представителей НКО · Общественный контроль</div>
+      </div>
+      <div class="org-node" style="min-width:200px; border-color: rgba(138,134,128,0.4);">
+        <div class="org-node-title">Внешняя оценка</div>
+        <div class="org-node-sub">Раз в 3 года · Международные эксперты</div>
+      </div>
+    </div>
+
+    <div class="org-connector" style="height:50px;"></div>
+
+    <!-- ПРЕДСЕДАТЕЛЬ -->
+    <div class="org-node org-node-top">
+      <div class="org-node-title">Председатель КЭА</div>
+      <div class="org-node-sub">Избирается Соймом · 6 лет · Максимум 2 срока</div>
+    </div>
+
+    <div class="org-connector" style="height:50px;"></div>
+
+    <!-- 4 ЗАМЕСТИТЕЛЯ / ДЕПАРТАМЕНТА -->
+    <div class="org-row" style="gap:16px;">
+      <div class="org-branch">
+        <div class="org-node org-branch-card org-color-crimson">
+          <div class="org-node-title">Департамент расследований</div>
+          <div class="org-node-sub">Следствие · ОРД · Финансовые дела</div>
+        </div>
+      </div>
+      <div class="org-branch">
+        <div class="org-node org-branch-card org-color-gold">
+          <div class="org-node-title">Департамент превенции</div>
+          <div class="org-node-sub">Риски · Декларации · Экспертиза</div>
+        </div>
+      </div>
+      <div class="org-branch">
+        <div class="org-node org-branch-card org-color-teal">
+          <div class="org-node-title">Департамент этики</div>
+          <div class="org-node-sub">Кодексы · Конфликт интересов · Лоббинг</div>
+        </div>
+      </div>
+      <div class="org-branch">
+        <div class="org-node org-branch-card org-color-violet">
+          <div class="org-node-title">Просвещение и политика</div>
+          <div class="org-node-sub">Обучение · Кампании · Стратегии</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:70px; text-align:center; font-size:12px; color:var(--smoke);">
+      Управление внутреннего контроля подчиняется непосредственно Председателю
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section class="guarantees-section section" id="guarantees">
+  <div class="section-label">06 · Гарантии независимости</div>
+  <h2 class="section-title reveal">Защита от политического<br>давления</h2>
+
+  <div class="guarantees-grid">
+    <div class="guarantee-card highlight reveal">
+      <span class="g-icon">⚖️</span>
+      <div class="g-title">Защищённый мандат Председателя</div>
+      <div class="g-text">Избирается парламентом на <span class="g-accent">6 лет</span> по итогам открытого конкурса конкурсной комиссией (3 члена от Сойма + 3 от международных организаций). Прекратить полномочия досрочно можно только по исчерпывающему перечню оснований, закреплённых в законе, с правом обжалования в суде. Решение о досрочном прекращении — <span class="g-accent">⅗ голосов депутатов</span>.</div>
+    </div>
+
+    <div class="guarantee-card reveal">
+      <span class="g-icon">💰</span>
+      <div class="g-title">Защищённый бюджет</div>
+      <div class="g-text">Финансирование утверждается сразу на <span class="g-accent">3 года</span>. Сократить досрочно можно только пропорционально общему секвестру бюджета — не выборочно. Любое уменьшение требует публичного рассмотрения в Сойме.</div>
+    </div>
+
+    <div class="guarantee-card reveal">
+      <span class="g-icon">🚫</span>
+      <div class="g-title">Запрет вмешательства</div>
+      <div class="g-text">Запрещены любые указания по конкретным материалам и расследованиям. О попытках вмешательства Комитет незамедлительно информирует парламент. Председатель пользуется иммунитетом: возбуждение уголовного дела против него требует решения суда.</div>
+    </div>
+
+    <div class="guarantee-card reveal">
+      <span class="g-icon">🔄</span>
+      <div class="g-title">Ротация и открытый конкурс</div>
+      <div class="g-text">Максимум <span class="g-accent">два срока</span> для Председателя. Конкурсные комиссии формируются с участием международных организаций. Все сотрудники — только через открытый конкурс с проверкой добропорядочности.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section section" id="roadmap">
+  <div class="section-label">07 · Нормативный пакет</div>
+  <h2 class="section-title reveal">Законодательная<br>архитектура</h2>
+
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-1">01</div>
+      <div class="tl-content">
+        <div class="tl-tag">Базовый акт</div>
+        <div class="tl-title">Закон «О Комитете по этике государственной службы и противодействию коррупции»</div>
+        <div class="tl-text">Закрепляет статус КЭА как независимого государственного органа, не входящего в состав Правительства. Определяет мандат, полномочия, гарантии независимости и механизмы контроля.</div>
+        <ul class="tl-bullets">
+          <li>Статус, принципы и задачи Комитета (главы 1–2)</li>
+          <li>Организационная структура и руководство (главы 3–4)</li>
+          <li>Персонал, права и обязанности (главы 5–6)</li>
+          <li>Подотчётность и внешний контроль (глава 14)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-2">02</div>
+      <div class="tl-content">
+        <div class="tl-tag">Синхронизация</div>
+        <div class="tl-title">Изменения в базовые рамочные законы</div>
+        <div class="tl-text">Поправки к закону «О борьбе с коррупцией» — КЭА включается в перечень уполномоченных органов. Закон «Об ОРД» — включение КЭА в перечень субъектов оперативно-розыскной деятельности.</div>
+        <ul class="tl-bullets">
+          <li>Закон «О борьбе с коррупцией» — ст. 6, 7, 12, 13, 29–35</li>
+          <li>Закон «Об оперативно-розыскной деятельности» — ст. 12</li>
+          <li>Проект нового Закона «О прокуратуре» — спецпрокурор по делам КЭА</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-3">03</div>
+      <div class="tl-content">
+        <div class="tl-tag">Процессуальные гарантии</div>
+        <div class="tl-title">Поправки в УПК, КоАП и ПИКоАП</div>
+        <div class="tl-text">УПК — закрепление подследственности дел о серьёзной и системной коррупции за КЭА. КоАП — включение Комитета в перечень органов административной юрисдикции.</div>
+        <ul class="tl-bullets">
+          <li>УПК ст. 182 — подследственность статей 424–433 УК за Комитетом</li>
+          <li>ПИКоАП ст. 3.1 — включение КЭА как органа административного процесса</li>
+          <li>УПК ст. 468² — санкционирование Генпрокурором в 24 часа</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-4">04</div>
+      <div class="tl-content">
+        <div class="tl-tag">Новые законы</div>
+        <div class="tl-title">Закон о защите информаторов + Закон о лоббировании</div>
+        <div class="tl-text">Два новых закона закроют ключевые пробелы. Без защиты информаторов люди боятся говорить, и серьёзные дела всплывают слишком поздно. Регулирование лоббирования закрывает «серую зону» влияния на решения.</div>
+        <ul class="tl-bullets">
+          <li>Закон «О защите лиц, сообщающих о нарушениях (информаторов)»</li>
+          <li>Закон «О лоббистской деятельности»</li>
+          <li>Реестр лоббистов и публичные контакты с должностными лицами</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-label">Прастора · prastora.info · 2025</div>
+  <h2 class="cta-title">Добропорядочность<br>как норма</h2>
+  <p class="cta-sub">Концепция даёт реалистичный план, который превращает политическое намерение в работающий институт и устойчивую политику противодействия коррупции.</p>
+  <a href="https://prastora.info" class="cta-btn" target="_blank">
+    Читать полный документ →
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-bar">
+  <div class="footer-logo">КЭА</div>
+  <div style="font-size:11px; color:var(--smoke); letter-spacing:0.1em;">Комітэт па этыцы дзяржаўнай службы і процідзеянні карупцыі</div>
+  <a href="https://prastora.info" class="footer-link" target="_blank">prastora.info</a>
+</footer>
+
+<script>
+// Accordion principles
+function togglePrinciple(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.principle-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Stagger children
+document.querySelectorAll('.why-card, .pillar, .guarantee-card, .tl-item').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 4) * 0.1}s`;
+});
+</script>
+</body>
+</html>
